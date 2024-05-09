@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Executor Cabinet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .label {
+            display: inline-block;
+            font-weight: bold;
+            width: 100px;
+        }
+
+        .info {
+            display: inline-block;
+            text-align: left;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Executor Cabinet</h1>
+
+    {% for executor in object_list %}
+    <div class="container">
+        <p><span class="label">Name:</span> <span class="info">{{ executor.name }}</span></p>
+        <p><span class="label">Skills:</span> <span class="info">{{ executor.skills }}</span></p>
+        <p><span class="label">Education:</span> <span class="info">{{ executor.education }}</span></p>
+        <p><span class="label">Experience:</span> <span class="info">{{ executor.experience }}</span></p>
+        <p><span class="label">Phone:</span> <span class="info">{{ executor.phone }}</span></p>
+        <p><span class="label">Email:</span> <span class="info">{{ executor.email }}</span></p>
+    </div>
+    {% endfor %}
+
+    <div class="button-container">
+        <a href="{% url 'index' %}" class="button">Go to Home</a>
+        <a href="{% url 'customer_cabinet' %}" class="button">Customer Page</a>
+    </div>
+</body>
+
+</html>
