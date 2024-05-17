@@ -5,50 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Freelance</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/random');
-            background-size: cover;
-            background-position: center;
-            color: #fff;
             margin: 0;
             padding: 0;
+            background-image: url('/mysite/seeker/static/images/freelancer_image.jpg');
+
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
         .container {
-            width: 80%;
-            text-align: center;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 10px;
         }
 
         h1 {
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 2em;
             margin-bottom: 20px;
         }
 
         .button {
-            background-color: #4CAF50;
-            color: #ffffff;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 18px;
-            margin: 10px;
-            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #3498db;
+            color: white;
             border: none;
             border-radius: 5px;
-            box-shadow: 0 6px #3e8e41;
-            transition: box-shadow 0.3s;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .button:hover {
-            box-shadow: 0 4px #2E8540;
-            background-color: #3e8e41;
+            background-color: #2980b9;
         }
     </style>
 </head>
