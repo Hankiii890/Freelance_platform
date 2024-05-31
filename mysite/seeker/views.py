@@ -1,17 +1,11 @@
 from django.shortcuts import render
 from django.views import generic
 
-from .models import Customer,Executor
+from .models import Executor
 
 
 def index(request):
     return render(request, 'cabinets/index.html')
-
-
-class CustomerListView(generic.ListView):
-    model = Customer
-    queryset = Customer.objects.all()
-    template_name = 'cabinets/customer_cabinet.html'
 
 
 class ExecutorListView(generic.ListView):
