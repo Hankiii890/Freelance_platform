@@ -8,36 +8,34 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('/mysite/seeker/static/images/freelancer_image.jpg');
-
-            background-size: cover;
-            background-position: center;
+            background-color: #b856b5;
             height: 100vh;
-            color: white;
-            text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .container {
-            background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-            padding: 20px;
+            background-color: #fff;
+            padding: 40px;
             border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         h1 {
             font-size: 2em;
+            color: #333;
             margin-bottom: 20px;
         }
 
         .button {
             padding: 10px 20px;
             font-size: 1.2em;
-            background-color: #3498db;
+            background-color: #5c345b;
             color: white;
             border: none;
             border-radius: 5px;
@@ -46,17 +44,17 @@
         }
 
         .button:hover {
-            background-color: #2980b9;
+            background-color: #ec407a;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Freelance</h1>
+<div class="container">
+    <h1>Welcome to Freelance</h1>
 
-        <a href="{% url 'executor_cabinet' %}">
-            <button class="button">Executor</button>
-        </a>
-    </div>
+    <a href="{% url 'executor_cabinet' %}">
+        <button class="button">Executor</button>
+    </a>
+</div>
 </body>
 </html>

@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,39 +6,91 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Client Area</title>
     <style>
-    .executor-box {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px;
-    width: 300px;
-    }
-    .executor-box h2 {
-        color: #333;
-        font-size: 20px;
-    }
-    .executor-box a {
-        display: inline-block;
-        background-color: #007bff;
-        color: #fff;
-        padding: 5px 10px;
-        border-radius: 3px;
-        text-decoration: none;
-        margin-top: 10px;
-    }
-    .executor-box a:hover {
-        background-color: #0056b3;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e1f7f7;
+            padding: 20px;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .executor-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 20px;
+            justify-content: center;
+        }
+
+        .executor-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #F5F5DC;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .executor-box h2 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .executor-box p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .executor-box a {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .executor-box a:hover {
+            background-color: #0056b3;
+        }
+
+        .footer-btn {
+            position: absolute;
+            bottom: 70px;
+            left: 10px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .footer-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <h1>Executors</h1>
-    {% for executor in object_list %}
-    <div class="executor-box">
-        <h2>{{ executor.name }}</h2>
-        <p>Skills: {{ executor.skills.all|join:", " }}</p>
-        <p>Experience: {{ executor.experience }}</p>
-        <a href="{% url 'executor_detail' executor.id %}">Подробнее</a>
+    <div class="executor-container">
+        {% for executor in object_list %}
+        <div class="executor-box">
+            <h2>{{ executor.name }}</h2>
+            <p><strong>Skills:</strong> {{ executor.skills.all|join:", " }}</p>
+            <p><strong>Experience:</strong> {{ executor.experience }}</p>
+            <a href="{% url 'executor_detail' executor.id %}">Подробнее</a>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+    <a href="{% url 'index' %}" class="footer-btn">На главную</a>
 </body>
 </html>
