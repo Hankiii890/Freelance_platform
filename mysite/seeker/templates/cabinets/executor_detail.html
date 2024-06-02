@@ -6,34 +6,67 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ object.name }} Details</title>
     <style>
-    .executor-details {
-        border: 1px solid #ccc;
-        padding: 20px;
-        margin: 20px;
-        max-width: 500px;
-    }
-    .executor-details h1 {
-        color: #333;
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-    .executor-details p {
-        color: #666;
-        font-size: 16px;
-        margin-bottom: 10px;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e1f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start; /* Выравнивание по левому краю */
+            align-items: flex-start; /* Выравнивание по верхнему краю */
+            min-height: 100vh;
+        }
+
+        .executor-details {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 55%;
+            height: 38%;
+            background-color: #F5F5DC;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: absolute; /* Позиционирование абсолютно */
+            top: 20px; /* Отступ сверху */
+            left: 20px; /* Отступ слева */
+        }
+
+        .executor-details h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .executor-details p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .executor-details a {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .executor-details a:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
-
     <div class="executor-details">
         <h1>{{ object.name }}</h1>
-        <p>Skills: {{ object.skills }}</p>
-        <p>Experience: {{ object.experience }}</p>
-        <p>Education: {{ object.education }}</p>
-        <p>Phone: {{ object.phone }}</p>
-        <p>Email: {{ object.email }}</p>
+        <p><strong>Skills:</strong> {{ object.skills }}</p>
+        <p><strong>Experience:</strong> {{ object.experience }}</p>
+        <p><strong>Education:</strong> {{ object.education }}</p>
+        <p><strong>Phone:</strong> {{ object.phone }}</p>
+        <p><strong>Email:</strong> {{ object.email }}</p>
+        <a href="{% url 'executor_cabinet'%}">Назад</a>
     </div>
-
 </body>
 </html>
