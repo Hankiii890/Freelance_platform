@@ -14,3 +14,5 @@ class Executor(models.Model):
 class Skill(models.Model):
     """Навыки"""
     description = models.CharField(max_length=255)
+
+
