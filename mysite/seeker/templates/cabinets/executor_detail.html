@@ -61,7 +61,7 @@
 <body>
     <div class="executor-details">
         <h1>{{ object.name }}</h1>
-        <p><strong>Skills:</strong> {{ object.skills }}</p>
+        <p><strong>Skills:</strong> {{ executor.skills.all|join:", "  }}</p>
         <p><strong>Experience:</strong> {{ object.experience }}</p>
         <p><strong>Education:</strong> {{ object.education }}</p>
         <p><strong>Phone:</strong> {{ object.phone }}</p>

@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
+from django.http import HttpResponse
+from .models import SMSMessage
 
 from .models import Executor
 
@@ -30,3 +32,17 @@ class ExecutorDetailView(generic.DetailView):
         Возвращаем только объект Executor с идентификатором, указанным в параметрах URL
         """
         return Executor.objects.filter(pk=self.kwargs['pk'])
+
+
+def send_message(request, executor_id):
+    '''Обрабатываем отправку СМС'''
+    if request.method == 'POST':
+        executor_id = request.POST.get('executor_id')
+        sender_name = request.POST.get('sender_name')
+        message = request.POST.get('message')
+
+        executor = Executor.objects.get(pk=executor_id)
+        sms = SMSMessage(sender_name=sender_name, executor=executor, message=message)
+        sms.save()
+
+    return redirect('executor_detail', pk=executor_id)
