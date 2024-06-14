@@ -34,7 +34,7 @@ class ExecutorDetailView(generic.DetailView):
         return Executor.objects.filter(pk=self.kwargs['pk'])
 
 
-def send_message(request, executor_id):
+def write_message(request, executor_id):
     '''Обрабатываем отправку СМС'''
     if request.method == 'POST':
         executor_id = request.POST.get('executor_id')
