@@ -88,7 +88,6 @@
             <p><strong>Skills:</strong> {{ executor.skills.all|join:", " }}</p>
             <p><strong>Experience:</strong> {{ executor.experience }}</p>
             <a href="{% url 'executor_detail' executor.id %}">Подробнее</a>
-            <a href="{% url 'write_message' executor.id %}">Написать</a>
         </div>
         {% endfor %}
     </div>
