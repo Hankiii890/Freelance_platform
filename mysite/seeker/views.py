@@ -31,3 +31,8 @@ class ExecutorDetailView(generic.DetailView):
         return Executor.objects.filter(pk=self.kwargs['pk'])
 
 
+class Message(generic.DetailView):
+    """
+    Communication with executors
+    """
+
