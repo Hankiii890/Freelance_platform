@@ -1,0 +1,115 @@
+<!-- executor_detail.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Executor Dialogue</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e1f7f7;
+            padding: 20px;
+        }
+
+        .dialogue-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #F5F5DC;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .executor-info {
+            margin-bottom: 20px;
+        }
+
+        .executor-info h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .executor-info p {
+            margin-bottom: 10px;
+        }
+
+        .message-form {
+            margin-top: 20px;
+        }
+
+        .message-form textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .message-form button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .message-form button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .message-list {
+            margin-top: 20px;
+        }
+
+        .message-list li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .message-list li:last-child {
+            border-bottom: none;
+        }
+
+        .message-list .message-text {
+            font-size: 16px;
+        }
+
+        .message-list .message-date {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="dialogue-container">
+        <div class="executor-info">
+            <h2>{{ executor.name }}</h2>
+            <p><strong>Skills:</strong> {{ executor.skills.all|join:", " }}</p>
+            <p><strong>Experience:</strong> {{ executor.experience }}</p>
+        </div>
+
+        <form class="message-form" method="post">
+            {% csrf_token %}
+            <textarea name="message" placeholder="Write a message..."></textarea>
+            <button type="submit">Send</button>
+        </form>
+
+        <ul class="message-list">
+            {% for message in executor.messages.all %}
+            <li>
+                <p class="message-text">{{ message.text }}</p>
+                <p class="message-date">{{ message.created_at }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>

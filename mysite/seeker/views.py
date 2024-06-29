@@ -9,7 +9,7 @@ def index(request):
 
 class ExecutorListView(generic.ListView):
     """
-    Отображение списка объектов модели Executor
+    Display list models objects
     """
     model = Executor    # Указывам с какой моделью работаем
     queryset = Executor.objects.all()   #  Задаем запрос к базе данных, чтобы получить все объекты модели
@@ -18,7 +18,7 @@ class ExecutorListView(generic.ListView):
 
 class ExecutorDetailView(generic.DetailView):
     """
-    Детальная информации об одном объекте модели
+    model object information
     """
     model = Executor
     template_name = 'cabinets/executor_detail.html'
@@ -26,13 +26,11 @@ class ExecutorDetailView(generic.DetailView):
 
     def get_queryset(self):
         """
-        Возвращаем только объект Executor с идентификатором, указанным в параметрах URL
+        Return executor URL
         """
         return Executor.objects.filter(pk=self.kwargs['pk'])
 
 
 class Message(generic.DetailView):
-    """
-    Communication with executors
-    """
+
 
