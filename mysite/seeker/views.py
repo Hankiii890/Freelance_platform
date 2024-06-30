@@ -32,5 +32,5 @@ class ExecutorDetailView(generic.DetailView):
 
 
 class Message(generic.DetailView):
-
+    pass
 

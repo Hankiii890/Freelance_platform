@@ -1,4 +1,6 @@
 from django.db import models
+from django.apps import apps
+from django.conf import settings
 from django.utils import timezone
 
 
@@ -20,5 +22,11 @@ class Skill(models.Model):
         return self.description
 
 
+class Message(models.Model):
+    """ Model for message between executor and user  """
 
-
+    executor = models.ForeignKey('Executor', on_delete=models.CASCADE, related_name='messages')     # Можем получить список всех сообщение исполнителя с помощью: executor.messages
+    user = models.ForeignKey(apps.get_models(settings.AUTH_USER_MODEL), on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
