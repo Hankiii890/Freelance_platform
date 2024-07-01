@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 from .models import Executor
+from .forms import MessageForm
 
 
 def index(request):
@@ -30,7 +31,19 @@ class ExecutorDetailView(generic.DetailView):
         """
         return Executor.objects.filter(pk=self.kwargs['pk'])
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = MessageForm()
+        return context
 
-class Message(generic.DetailView):
-    pass
 
+class SendMessageView(generic.DetailView):
+    def post(self, request, pk):
+        executor = Executor.objects.get(pk=pk)
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.executor = executor
+            message.save()
+            return redirect('executor_detail', pk=pk)
+        return render(request, 'cabinets/executor_detail.html', {'form': form, 'executor': executor})

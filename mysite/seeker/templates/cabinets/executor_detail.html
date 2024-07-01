@@ -67,7 +67,7 @@
         <p><strong>Phone:</strong> {{ object.phone }}</p>
         <p><strong>Email:</strong> {{ object.email }}</p>
         <a href="{% url 'executor_cabinet'%}">Назад</a>
-        <a href="{% url 'executor_dialogue' %}" class="footer-btn">Связаться</a>
+        <a href="{% url 'dialogue' object.pk %}" class="footer-btn">Связаться</a>
     </div>
 </body>
 </html>
