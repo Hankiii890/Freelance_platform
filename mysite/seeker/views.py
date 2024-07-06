@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import generic
-from .models import Executor
+from .models import Executor, Message
 from .forms import MessageForm
 
 
@@ -38,6 +38,10 @@ class ExecutorDetailView(generic.DetailView):
 
 
 class SendMessageView(generic.DetailView):
+
+    def get_queryset(self):
+        return Message.objects.all()
+
     def post(self, request, pk):
         executor = Executor.objects.get(pk=pk)
         form = MessageForm(request.POST)
