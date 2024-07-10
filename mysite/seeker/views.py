@@ -43,6 +43,9 @@ class SendMessageView(generic.DetailView):
         return Message.objects.all()
 
     def post(self, request, pk):
+        model = Message
+        template_name = 'cabinets/dialogue'
+
         executor = Executor.objects.get(pk=pk)
         form = MessageForm(request.POST)
         if form.is_valid():
