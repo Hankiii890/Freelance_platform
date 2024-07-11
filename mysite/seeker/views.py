@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic
-from .models import Executor, Message
-from .forms import MessageForm
+from.models import Executor, Message
+from.forms import MessageForm
 
 
 def index(request):
@@ -9,26 +9,17 @@ def index(request):
 
 
 class ExecutorListView(generic.ListView):
-    """
-    Display list models objects
-    """
-    model = Executor    # Указывам с какой моделью работаем
-    queryset = Executor.objects.all()   #  Задаем запрос к базе данных, чтобы получить все объекты модели
-    template_name = 'cabinets/executor_cabinet.html'    # Шаблон, отображения списков объекта
+    model = Executor
+    queryset = Executor.objects.all()
+    template_name = 'cabinets/executor_cabinet.html'
 
 
 class ExecutorDetailView(generic.DetailView):
-    """
-    model object information
-    """
     model = Executor
     template_name = 'cabinets/executor_detail.html'
-    pk_url_kwarg = 'pk'     # Фильтруем по первичному ключу
+    pk_url_kwarg = 'pk'
 
     def get_queryset(self):
-        """
-        Return executor URL
-        """
         return Executor.objects.filter(pk=self.kwargs['pk'])
 
     def get_context_data(self, **kwargs):
@@ -37,15 +28,15 @@ class ExecutorDetailView(generic.DetailView):
         return context
 
 
-class SendMessageView(generic.DetailView):
+class SendMessageView(generic.View):
+    template_name = 'cabinets/dialogue.html'
 
-    def get_queryset(self):
-        return Message.objects.all()
+    def get(self, request, pk):
+        executor = Executor.objects.get(pk=pk)
+        form = MessageForm()
+        return render(request, self.template_name, {'form': form, 'executor': executor})
 
     def post(self, request, pk):
-        model = Message
-        template_name = 'cabinets/dialogue'
-
         executor = Executor.objects.get(pk=pk)
         form = MessageForm(request.POST)
         if form.is_valid():
@@ -53,4 +44,4 @@ class SendMessageView(generic.DetailView):
             message.executor = executor
             message.save()
             return redirect('executor_detail', pk=pk)
-        return render(request, 'cabinets/executor_detail.html', {'form': form, 'executor': executor})
+        return render(request, self.template_name, {'form': form, 'executor': executor})
