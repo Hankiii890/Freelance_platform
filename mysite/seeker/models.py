@@ -5,7 +5,7 @@ from django.utils import timezone
 
 
 class Executor(models.Model):
-    """Исполнитель"""
+    """Модель Исполнитель"""
     name = models.CharField(max_length=50, verbose_name='Имя')
     skills = models.ManyToManyField('Skill', related_name='executors', verbose_name='Навыки')
     experience = models.IntegerField(verbose_name='Опыт')
@@ -18,18 +18,20 @@ class Executor(models.Model):
         verbose_name_plural = 'Исполнители'
 
 class Skill(models.Model):
-    """Навыки"""
+    """Мдель отдельных навыков"""
     description = models.CharField(max_length=255, verbose_name='Описание')
 
     def __str__(self):
         return self.description
 
     class Meta:
+        '''Упорядочиваем записи'''
         verbose_name = 'Навык'
         verbose_name_plural = 'Навыки'
 
+
 class Message(models.Model):
-    """ Model for message between executor and user  """
+    """Модель сообщений между заказчиком и исполнителем"""
 
     executor = models.ForeignKey('Executor', on_delete=models.CASCADE, related_name='messages', verbose_name='Исполнитель')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Пользователь')
@@ -38,5 +40,6 @@ class Message(models.Model):
     is_read = models.BooleanField(default=False, verbose_name='Прочитано')
 
     class Meta:
+        '''Упорядочивание записей'''
         verbose_name = 'Сообщение'
         verbose_name_plural = 'Сообщения'
