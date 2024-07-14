@@ -1,7 +1,5 @@
 from django.db import models
-from django.apps import apps
 from django.conf import settings
-from django.utils import timezone
 
 
 class Executor(models.Model):
